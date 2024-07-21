@@ -1,6 +1,7 @@
 #include "plotter.h"
 #include <QPainter>
 #include <QBrush>
+#include <cstdlib>
 #include <QPen>
 #include <iostream>
 
@@ -12,22 +13,7 @@ void Plotter::paintEvent(QPaintEvent *event){
   QPainter painter(this);
   QBrush brush;
   QPen pen;
-  int x1,y1,x2,y2;
-  int *points = new int[10];
-
-  //*points = new int [max_points];
-
-
-  points[0] = 2;
-  points[1] = 3;
-  points[2] = 1;
-  points[3] = 5;
-  points[4] = 0;
-  points[5] = 8;
-  points[6] = 4;
-  points[7] = 2;
-  points[8] = 7;
-  points[9] = 9;
+  long long x1,y1,x2,y2;
 
   brush.setColor(QColor(255,255,100));
   brush.setStyle(Qt::SolidPattern);
@@ -44,23 +30,37 @@ void Plotter::paintEvent(QPaintEvent *event){
   pen.setWidth(3);
   painter.setPen(pen);
 
-  x1 = 0;
-  y1 = height();
+  if(x.size()>0){
+      x1 = 0;
+      y1 = height();
+      auto maxX = std::max_element(x.begin(), x.end());
+      auto minX = std::min_element(x.begin(), x.end());
+      auto maxY = std::max_element(y.begin(), y.end());
+      long long maxValorX = *maxX;
+      long long minValorX = *minX;
+      int maxValorY = *maxY;
 
-  for(int i = 0, j = 0; j < 10; i+= 10, j++){
-    x2 = i+10;
-    y2 = height() - 50*points[j];
+      for(int i =  0; i< x.size();i++){
+          x2 = width()*(x[i]-minValorX)/(maxValorX-minValorX);
+          y2 = height() - (height()*y[i])/maxValorY;
 
-    painter.drawLine(x1,y1,x2,y2);
+            painter.drawLine(x1,y1,x2,y2);
 
-    x1 = x2;
-    y1 = y2;
+            x1 = x2;
+            y1 = y2;
+
+      }
   }
-
-  delete[] points;
 }
 
 void Plotter::setMax_points(int n)
 {
 
+}
+
+void Plotter::setXY(std::vector<long long> x_, std::vector<int> y_){
+    x = x_;
+    y = y_;
+
+    repaint();
 }

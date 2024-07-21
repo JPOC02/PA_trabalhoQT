@@ -18,7 +18,7 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_7">
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_2" stretch="15,25,25,25,20">
+       <layout class="QVBoxLayout" name="verticalLayout_2" stretch="15,25,25,25,20,0">
         <item>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
@@ -129,6 +129,19 @@
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QLabel" name="labelSelectedTiming">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </item>
         <item>
@@ -144,6 +157,23 @@
            <widget class="QPushButton" name="pushButtonStop">
             <property name="text">
              <string>Stop</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0">
+          <item>
+           <widget class="QLabel" name="connectionLabel">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Disconnected</string>
             </property>
            </widget>
           </item>
